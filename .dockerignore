@@ -1,0 +1,4 @@
+# Exclude files and directories whose names start with temp + from any subdirectory and root dir
+*/temp*
+*/*/temp*
+temp?
