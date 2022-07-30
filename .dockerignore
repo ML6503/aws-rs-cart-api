@@ -2,3 +2,21 @@
 */temp*
 */*/temp*
 temp?
+
+#Ignore the git and cache folders
+.git
+.cache
+
+#Ignore logs directory if any
+logs/
+npm-debug/logs
+
+#Ignore node_modules
+node_modules
+
+#Ignore dist folder as build will be rund inside container
+dist
+
+#Ignore Docker related files
+Docker
+.dockerignore
