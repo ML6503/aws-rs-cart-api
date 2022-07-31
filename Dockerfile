@@ -1,24 +1,42 @@
-FROM node:12.16.3 as base
+FROM node:carbon AS development
+
 WORKDIR /app
 
-FROM base AS dependencies
-COPY package*.json ./
-RUN npm ci && npm cache clean --force
+COPY --chown=node:node package*.json ./
 
-FROM  dependencies AS build
+RUN npm ci
+
+COPY --chown=node:node . .
+
+USER node
+
+
+
+FROM node:18-alpine AS build
+
 WORKDIR /app
-# COPY src /app
-COPY . /app
+
+COPY --chown=node:node package*.json ./
+
+COPY --chown=node:node --from=development /app/node_modules ./node_modules
+
+COPY --chown=node:node . .
+
 RUN npm run build
 
-FROM node:alpine AS main
-WORKDIR /app
-ENV NODE_ENV=production
-COPY --from=dependencies /app/package*.json ./
-# RUN npm install --only=production && npm cache clean --force
-RUN npm install && npm cache clean --force
+ENV NODE_ENV production
+
+RUN npm ci --only=production && npm cache clean --force
+
 USER node
-COPY --from=build /app .
+
+
+FROM node:18-alpine AS production
+
+COPY --chown=node:node --from=build /app/node_modules ./node_modules
+COPY --chown=node:node --from=build /app/dist ./dist
+
+USER node
 EXPOSE 4000
-# CMD ["node", "dist/main.js"]
-ENTRYPOINT ["node", "dist/main.js"]
+
+CMD [ "node", "dist/main.js" ]

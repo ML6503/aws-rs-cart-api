@@ -64,7 +64,6 @@ $ npm run test:cov
 
 ```
 #build docker image
-
 $ docker build --no-cache --tag=cyshop-cart-api .
 
 #starts container
@@ -77,6 +76,9 @@ $ docker rm -f $(docker ps -aq)
 
 # find ID of running containers
 $ docker ps
+
+#see docker images
+$ docker images
 
 ```
 
