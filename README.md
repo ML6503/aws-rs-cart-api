@@ -63,7 +63,21 @@ $ npm run test:cov
 ## Docker commands
 
 ```
-$ docker build --no-cache --tag=shop-api .
+#build docker image
+
+$ docker build --no-cache --tag=cyshop-cart-api .
+
+#starts container
+# cart api will be avaiable on http://localhost/ (without port number)
+$ docker run -p80:4000 cyshop-cart-api
+
+
+#stops and removes all running containers
+$ docker rm -f $(docker ps -aq)
+
+# find ID of running containers
+$ docker ps
+
 ```
 
 ## Support
