@@ -74,6 +74,9 @@ $ docker run -p80:4000 cyshop-cart-api
 #stops and removes all running containers
 $ docker rm -f $(docker ps -aq)
 
+#remove all images
+$ docker rmi $(docker images -q)
+
 # find ID of running containers
 $ docker ps
 
