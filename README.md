@@ -6,7 +6,7 @@
 [travis-url]: https://travis-ci.org/nestjs/nest
 [linux-image]: https://img.shields.io/travis/nestjs/nest/master.svg?label=linux
 [linux-url]: https://travis-ci.org/nestjs/nest
-  
+
   <p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
     <p align="center">
 <a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
@@ -60,6 +60,31 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## Docker commands
+
+```
+#build docker image
+$ docker build --no-cache --tag=cyshop-cart-api .
+
+#starts container
+# cart api will be avaiable on http://localhost/ (without port number)
+$ docker run -p80:4000 cyshop-cart-api
+
+
+#stops and removes all running containers
+$ docker rm -f $(docker ps -aq)
+
+#remove all images
+$ docker rmi $(docker images -q)
+
+# find ID of running containers
+$ docker ps
+
+#see docker images
+$ docker images
+
+```
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
@@ -72,4 +97,4 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 ## License
 
-  Nest is [MIT licensed](LICENSE).
+Nest is [MIT licensed](LICENSE).

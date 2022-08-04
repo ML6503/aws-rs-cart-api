@@ -1,0 +1,22 @@
+# Exclude temp files and directories from any subdirectory and root dir as unneded in container
+*/temp*
+*/*/temp*
+temp?
+
+#Ignore the git and cache folders to save space
+.git
+.cache
+
+#Ignore logs directory if any as not required in the container
+logs/
+npm-debug/logs
+
+#Ignore node_modules as npm ci will be run inside contanier
+node_modules
+
+#Ignore dist folder as build will be run inside container
+dist
+
+#Ignore Docker related files as noe need in container
+Docker
+.dockerignore
